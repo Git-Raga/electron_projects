@@ -6,7 +6,7 @@ const path = require("path");
 const url = require("url");
 //getting required default apps from electron
 
-const {app, BrowserWindow}=electron;
+const {app, BrowserWindow, Menu}=electron;
 
 //window declaration
 let mainWindow;
@@ -17,9 +17,9 @@ app.on('ready',createWindow);
 
 function createWindow(){
    
-    mainWindow = new BrowserWindow({});//window creation
+        mainWindow = new BrowserWindow({});//window creation
    //loading HTML in to the window
-   mainWindow.loadURL(url.format({
+        mainWindow.loadURL(url.format({
         pathname : path.join(__dirname, 'mainWindowhtml.html'),
         protocol :'file:',
         slashes :true
@@ -28,11 +28,44 @@ function createWindow(){
 
 //garbage collection when window is closed
 
-mainWindow.on('closed',() => {
+    mainWindow.on('closed',() => {
     mainWindow=null;
     console.log("Window closed");
 })
-}
-//this is a test ccode for git
-LET ALSP
 
+
+//Menu creation Step 2 : Attaching template to electron  
+    const menuBar = Menu.buildFromTemplate(menuTemplate);
+ //Menu creation step 3: Inserting menu in the window
+    Menu.setApplicationMenu(menuBar);
+
+}//Create window fn()
+
+
+//Menu creation step 1: Creating a Template 
+    const menuTemplate =[
+    {
+      label:"File",
+      submenu:[
+            {
+              label : 'Add item'
+            },
+            {
+            label : 'Remove item',
+            click(){
+                    console.log('Remove pressed');
+            }
+            },
+            {
+            label : 'Quit',
+            //what shoul dhappen when clicked
+            click(){
+                    app.quit();
+
+            }
+            },
+        ]
+
+
+    }
+];
