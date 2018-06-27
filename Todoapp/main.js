@@ -1,30 +1,37 @@
 console.log ('Main.js Started');
-//standard electron start up code 
+//standard electron models required for start up  
 
 const electron = require("electron");
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
 const path = require("path");
 const url = require("url");
+//getting required default apps from electron
 
-let win;//reference for the window object
+const {app, BrowserWindow}=electron;
+
+//window declaration
+let mainWindow;
+let addWindow;
 
 //function to display a file in to the URL
+app.on('ready',createWindow);
 
 function createWindow(){
-    win = new BrowserWindow();
-    win.loadURL(url.format({
-        pathname : path.join(__dirname, 'index.html'),
-        protocol :'file',
+   
+    mainWindow = new BrowserWindow({});//window creation
+   //loading HTML in to the window
+   mainWindow.loadURL(url.format({
+        pathname : path.join(__dirname, 'mainWindowhtml.html'),
+        protocol :'file:',
         slashes :true
-    }));
+    }));// this above piece of code just load this filrfile://dirname/mainwindowhtml.html
+
+
 //garbage collection when window is closed
 
-win.on('closed',() => {
-    win=null;
+mainWindow.on('closed',() => {
+    mainWindow=null;
     console.log("Window closed");
 })
 }
 
 
-app.on('ready',createWindow);
