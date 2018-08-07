@@ -1,0 +1,39 @@
+<!<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+   
+    <title>Add taks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <form >
+        <div>
+            <label>Enter Task</label>
+            <Input type="text" id="item" autofocus> </Input>
+        </div>
+        <button type="submit"> Add task</button>
+    </form>
+   
+   <script>
+   //const electron = require('electron');//==> for sure why this is not required.
+    const {ipcRenderer}=electron;
+    const form = document.querySelector('form');
+   //when form submit is clicked, this function will be called
+    form.addEventListener('submit',submitForm);
+   
+    function submitForm(e){
+        e.preventDefault();
+        const item =document.querySelector('#item').value;
+        //because item of the input type id is item - line 15
+        ipcRenderer.send('item:add',item)
+        console.log(item + 'sent from addwindow')
+    }
+
+
+
+    </script>
+</body>
+</html>

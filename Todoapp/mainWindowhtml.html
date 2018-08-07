@@ -6,5 +6,24 @@
 </head>
 <body>
     <H1>To-Do List</H1>
+    <ul></ul>
+    test
+        <script>
+           test
+           //const electron = require('electron');
+            const {ipcRenderer} = electron;
+            const ul = document.querySelector('ul');
+            ipcRenderer.on('item:add',function(e, item){
+             const li =document.createElement('li');
+               const itemText =document.createTextNode(item);
+                li.appendChild(itemText);
+                ul.appendChild(li);
+                console.log( test);
+                alert(hi);
+            });
+
+            
+        </script>
+    
 </body>
 </html>

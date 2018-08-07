@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Raga's To-do App</title>
+    <!Style addedd from material CSS cdnj!>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+</head>
+<body>
+    
+    <Nav>
+        <div class="nav-wrapper">
+           <a class="brand-logo center">To do item</a>
+
+        </div>
+    </Nav>
+
+    <ul></ul>
+    <script>
+    const {ipcRenderer} = require('electron')
+    const ul = document.querySelector('ul');
+    
+    //this is for item add
+    ipcRenderer.on('items:add',function(e, item){
+        ul.className="collection";
+      
+       const li = document.createElement('li');
+       li.className="collection-item";
+       const itemText = document.createTextNode(item);
+       li.appendChild(itemText);
+        ul.appendChild(li);           
+     });
+    
+     //this is for the item clear
+     ipcRenderer.on('items:clear',function(){
+         ul.innerHTML = '';
+         ul.className='';
+     });
+    //to remove a perticular item
+
+    ul.addEventListener('dblclick',removeItem);
+    function removeItem(e){
+        e.target.remove();
+         if (ul.children.length==0){
+             ul.className='';
+         }
+    }
+
+        </script>
+     
+</body>
+</html>
