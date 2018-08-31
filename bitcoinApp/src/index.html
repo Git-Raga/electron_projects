@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0">
+  <title>BitCoin App</title>
+  <link href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,400,200,300|Quattrocento+Sans:700,400|Cuprum:400" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body class="body page-index clearfix">
+  <div id="headerid" class="container_header"></div>
+  <p class="text text-1"><em>$BitCoin rate alerter</em></p>
+  <div class="element element-1"></div>
+  <div class="container container-1 clearfix">
+    <div class="element"></div>
+    <p class="text text-2"><em>Current Alert Thershold</em></p>
+    <div id="currentsts" class="button_current-status">NotSet</div>
+    <p class="text text-3"><em>Current rate of BitCoin</em></p>
+
+         <input class="_input" style="font-size:15px" name="Value" placeholder="Enter the Alert Threshold" type="number" id="Thershold" autofocus>
+      <button class="_button _button-1" onclick="setrate()" >Set</button>
+     
+    <button class="_button _button-2" id="long_text">You will get the Alert in the system tray, when the BitCoin rate crosses the Threashold value</button>
+  </div>
+  <input class="_input _input-2" name="currentvalue" placeholder="$567.00" type="number" readonly="readonly">
+  <div class="container container-2"></div>
+  <div class="element element-3"></div>
+  <p class="text text-4"><span>Proverbs come here</span></p>
+
+<script>
+  function setrate(){
+   
+    document.getElementById("currentsts").innerHTML= '$' + document.getElementById("Thershold").value.toLocaleString()
+    document.getElementById("long_text").innerText="You will get the Alert in the system tray, when the BitCoin rate crosses " +  document.getElementById("currentsts").innerHTML +'..Please standby...'
+    document.getElementById("Thershold").value="";
+
+  }  
+    
+   
+
+</script>
+
+
+</body>
+</html>
